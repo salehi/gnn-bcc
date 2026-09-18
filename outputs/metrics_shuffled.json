@@ -1,0 +1,125 @@
+{
+  "run": "showcase_split",
+  "config": {
+    "data_path": "/app/data/data_with_bcc_score.xlsx",
+    "sheet": "Data",
+    "out_dir": "/app/outputs",
+    "tag": "shuffled",
+    "hidden_dims": [
+      24,
+      12
+    ],
+    "model": "sage",
+    "dropout": 0.0,
+    "k": 8,
+    "edges": "knn",
+    "loss": "mse",
+    "huber_beta": 0.05,
+    "lr": 0.005,
+    "weight_decay": 0.0005,
+    "max_epochs": 1000,
+    "patience": 100,
+    "sched_patience": 25,
+    "sched_factor": 0.5,
+    "min_lr": 1e-05,
+    "grad_clip": 1.0,
+    "val_size": 0.15,
+    "test_size": 0.15,
+    "n_bins": 10,
+    "n_folds": 5,
+    "seed": 42,
+    "live_every": 5,
+    "log_every": 10,
+    "shuffle_labels": true
+  },
+  "dea": {
+    "inputs": [
+      "owners equity",
+      "total operational expences"
+    ],
+    "outputs": [
+      "net profit",
+      "operational income"
+    ],
+    "note": "assumed orientation; confirm against the thesis"
+  },
+  "splits": {
+    "train": 648,
+    "val": 139,
+    "test": 140
+  },
+  "training": {
+    "best_epoch": 47,
+    "epochs_run": 147,
+    "best_val_rmse": 0.15116944122061177,
+    "seconds": 10.5,
+    "n_params": 889,
+    "train_edges": 6580,
+    "mean_in_degree": 10.154320987654321
+  },
+  "metrics": {
+    "train": {
+      "n": 648,
+      "rmse": 0.15440239619248694,
+      "mae": 0.12408600394519052,
+      "mape": 20.219028964731987,
+      "max_error": 0.5653725584136963,
+      "r2": 0.010591455347981449,
+      "bias": 0.007434525635912389,
+      "spearman": 0.07620101484371228,
+      "kendall": 0.05174636236591991,
+      "frontier_n": 21,
+      "frontier_pred_mean": 0.7336615778151012,
+      "frontier_gap": 0.2663384221848988,
+      "frontier_mae": 0.2663384221848987,
+      "p95_precision": NaN,
+      "p95_recall": 0.0,
+      "p95_f1": NaN,
+      "p90_precision": NaN,
+      "p90_recall": 0.0,
+      "p90_f1": NaN
+    },
+    "val": {
+      "n": 139,
+      "rmse": 0.15116944122061177,
+      "mae": 0.12229092586013464,
+      "mape": 19.30269120403319,
+      "max_error": 0.4799021364486694,
+      "r2": -0.0006566543675519121,
+      "bias": 0.002733719385665783,
+      "spearman": 0.035084622691124064,
+      "kendall": 0.025135587379751058,
+      "frontier_n": 4,
+      "frontier_pred_mean": 0.7300756871700287,
+      "frontier_gap": 0.2699243128299713,
+      "frontier_mae": 0.2699243128299713,
+      "p95_precision": NaN,
+      "p95_recall": 0.0,
+      "p95_f1": NaN,
+      "p90_precision": NaN,
+      "p90_recall": 0.0,
+      "p90_f1": NaN
+    },
+    "test": {
+      "n": 140,
+      "rmse": 0.15617951738782967,
+      "mae": 0.12558822273332867,
+      "mape": 20.388736740122937,
+      "max_error": 0.4934991432785034,
+      "r2": 0.005864758911761414,
+      "bias": 0.005126189670192175,
+      "spearman": 0.084331026344136,
+      "kendall": 0.05716048385361812,
+      "frontier_n": 4,
+      "frontier_pred_mean": 0.7400776147842407,
+      "frontier_gap": 0.2599223852157593,
+      "frontier_mae": 0.2599223852157593,
+      "p95_precision": NaN,
+      "p95_recall": 0.0,
+      "p95_f1": NaN,
+      "p90_precision": NaN,
+      "p90_recall": 0.0,
+      "p90_f1": NaN
+    }
+  }
+}
