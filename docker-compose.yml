@@ -1,0 +1,50 @@
+# NOTE: this host has the standalone `docker-compose` v2 binary, NOT the
+# `docker compose` CLI plugin. Use `docker-compose` (hyphenated) or ./run.sh.
+services:
+  gnn:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gnn-bcc:cpu
+    user: "${UID:-1000}:${GID:-1000}"
+    volumes:
+      - ./data:/app/data:ro
+      - ./outputs:/app/outputs
+    working_dir: /app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MPLCONFIGDIR=/tmp/mpl
+      - HOME=/tmp
+    command: ["python", "-m", "src.train"]
+
+  train:
+    extends: gnn
+    command: ["python", "-m", "src.train"]
+
+  cv:
+    extends: gnn
+    command: ["python", "-m", "src.cv"]
+
+  ablation:
+    extends: gnn
+    command: ["python", "-m", "src.ablation"]
+
+  report:
+    extends: gnn
+    command: ["python", "-m", "src.report"]
+
+  # Hybrid ML-DEA study: 4 learners x 3 normalisations.
+  ml-dea:
+    extends: gnn
+    command: ["python", "-m", "src.mldea.run"]
+
+  ml-dea-selftest:
+    extends: gnn
+    command: ["python", "-m", "src.mldea.selftest"]
+
+  shell:
+    extends: gnn
+    entrypoint: ["/bin/bash"]
+    command: []
+    stdin_open: true
+    tty: true
